@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VideoSpeedControl - Settings Screenshot</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: #f0f2f5;
+            overflow: hidden;
+        }
+        
+        .screenshot-container {
+            width: 1280px;
+            height: 800px;
+            position: relative;
+            margin: 0 auto;
+            background: #f0f2f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .browser-window {
+            width: 1200px;
+            height: 720px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        /* Browser Chrome */
+        .browser-header {
+            height: 60px;
+            background: #e8eaed;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            border-bottom: 1px solid #dadce0;
+        }
+        
+        .browser-controls {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .browser-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        
+        .dot-close { background: #ff5f57; }
+        .dot-minimize { background: #ffbd2e; }
+        .dot-maximize { background: #28ca42; }
+        
+        .url-bar {
+            flex: 1;
+            margin: 0 20px;
+            height: 32px;
+            background: #fff;
+            border: 1px solid #dadce0;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            font-size: 14px;
+            color: #5f6368;
+        }
+        
+        /* Page Content */
+        .page-content {
+            height: 660px;
+            display: flex;
+        }
+        
+        /* Left Panel - YouTube-like Interface */
+        .youtube-panel {
+            flex: 1;
+            background: #0f0f0f;
+            position: relative;
+        }
+        
+        .youtube-header {
+            height: 60px;
+            background: #0f0f0f;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            border-bottom: 1px solid #303030;
+        }
+        
+        .youtube-logo {
+            color: #fff;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .video-player {
+            margin: 20px;
+            background: #000;
+            border-radius: 8px;
+            height: 400px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .video-thumbnail {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #1a1a1a, #333);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 24px;
+        }
+        
+        .video-controls {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            color: white;
+            font-size: 14px;
+        }
+        
+        .play-button {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 16px;
+        }
+        
+        .progress-bar {
+            flex: 1;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 2px;
+            margin: 0 15px;
+            position: relative;
+        }
+        
+        .progress-filled {
+            width: 40%;
+            height: 100%;
+            background: #ff0000;
+            border-radius: 2px;
+        }
+        
+        .time-display {
+            font-size: 12px;
+        }
+        
+        /* Right Panel - Extension Settings */
+        .settings-panel {
+            width: 400px;
+            background: #fff;
+            border-left: 1px solid #e8eaed;
+            overflow-y: auto;
+        }
+        
+        .extension-popup {
+            padding: 20px;
+            max-width: 380px;
+            margin: 0 auto;
+        }
+        
+        .popup-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            margin: -20px -20px 20px -20px;
+            text-align: center;
+        }
+        
+        .popup-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+        }
+        
+        .section h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #495057;
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 5px;
+        }
+        
+        .shortcuts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .shortcut-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .shortcut-label {
+            font-size: 12px;
+            font-weight: 500;
+            color: #6c757d;
+        }
+        
+        .input-group {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .input-group input {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 13px;
+            width: 60px;
+        }
+        
+        .input-group span {
+            font-size: 11px;
+            color: #868e96;
+        }
+        
+        .setting-item {
+            margin-bottom: 15px;
+        }
+        
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+        
+        .speed-buttons {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+        }
+        
+        .speed-btn {
+            padding: 10px 8px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            background: white;
+            color: #495057;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .speed-btn.active {
+            background: #667eea;
+            border-color: #667eea;
+            color: white;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .btn {
+            flex: 1;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .help-text {
+            margin-top: 15px;
+            font-size: 11px;
+            color: #6c757d;
+            line-height: 1.4;
+        }
+        
+        .help-text p {
+            margin-bottom: 3px;
+        }
+        
+        .help-text strong {
+            font-weight: 600;
+            color: #495057;
+            background: #f8f9fa;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Monaco', 'Consolas', monospace;
+        }
+        
+        /* Smart Floating Panel on YouTube */
+        .smart-panel {
+            position: absolute;
+            top: 100px;
+            right: 30px;
+            background: rgba(0, 0, 0, 0.85);
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+        }
+        
+        .smart-panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 11px;
+            font-weight: 500;
+        }
+        
+        .smart-panel-close {
+            background: none;
+            border: none;
+            color: #999;
+            font-size: 14px;
+            cursor: pointer;
+            width: 16px;
+            height: 16px;
+        }
+        
+        .smart-speeds {
+            display: flex;
+            gap: 4px;
+        }
+        
+        .smart-speed {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .smart-speed.active {
+            background: #667eea;
+            border-color: #667eea;
+        }
+        
+        /* Language switching */
+        .lang-en .chinese { display: none; }
+        .lang-cn .english { display: none; }
+    </style>
+</head>
+<body class="lang-cn">
+    <div class="screenshot-container">
+        <div class="browser-window">
+            <!-- Browser Header -->
+            <div class="browser-header">
+                <div class="browser-controls">
+                    <div class="browser-dot dot-close"></div>
+                    <div class="browser-dot dot-minimize"></div>
+                    <div class="browser-dot dot-maximize"></div>
+                </div>
+                <div class="url-bar">
+                    <span>🔒 https://www.youtube.com/watch?v=example</span>
+                </div>
+            </div>
+            
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- YouTube-like Interface -->
+                <div class="youtube-panel">
+                    <div class="youtube-header">
+                        <div class="youtube-logo">📺 YouTube</div>
+                    </div>
+                    
+                    <div class="video-player">
+                        <div class="video-thumbnail">
+                            <div style="text-align: center;">
+                                <div style="font-size: 48px; margin-bottom: 10px;">🎬</div>
+                                <div class="chinese">智能视频控制演示</div>
+                                <div class="english">Smart Video Control Demo</div>
+                            </div>
+                        </div>
+                        
+                        <div class="video-controls">
+                            <div class="play-button">▶</div>
+                            <div class="progress-bar">
+                                <div class="progress-filled"></div>
+                            </div>
+                            <div class="time-display">2:34 / 6:42</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Smart Floating Panel -->
+                    <div class="smart-panel">
+                        <div class="smart-panel-header">
+                            <span class="chinese">速度控制</span>
+                            <span class="english">Speed Control</span>
+                            <button class="smart-panel-close">×</button>
+                        </div>
+                        <div class="smart-speeds">
+                            <button class="smart-speed">1x</button>
+                            <button class="smart-speed active">1.5x</button>
+                            <button class="smart-speed">2x</button>
+                            <button class="smart-speed">2.5x</button>
+                            <button class="smart-speed">3x</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Extension Settings Panel -->
+                <div class="settings-panel">
+                    <div class="extension-popup">
+                        <div class="popup-header">
+                            <h1 class="popup-title">
+                                <span class="chinese">智能视频控制器</span>
+                                <span class="english">VideoSpeedControl</span>
+                            </h1>
+                        </div>
+                        
+                        <div class="section">
+                            <h3>
+                                <span class="chinese">键盘快捷键</span>
+                                <span class="english">Keyboard Shortcuts</span>
+                            </h3>
+                            <div class="shortcuts-grid">
+                                <div class="shortcut-item">
+                                    <label class="shortcut-label">
+                                        <span class="chinese">Z键</span>
+                                        <span class="english">Z Key</span>
+                                    </label>
+                                    <div class="input-group">
+                                        <input type="number" value="30" min="1" max="300">
+                                        <span class="chinese">秒</span>
+                                        <span class="english">sec</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="shortcut-item">
+                                    <label class="shortcut-label">
+                                        <span class="chinese">X键</span>
+                                        <span class="english">X Key</span>
+                                    </label>
+                                    <div class="input-group">
+                                        <input type="number" value="10" min="1" max="300">
+                                        <span class="chinese">秒</span>
+                                        <span class="english">sec</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="shortcut-item">
+                                    <label class="shortcut-label">
+                                        <span class="chinese">C键</span>
+                                        <span class="english">C Key</span>
+                                    </label>
+                                    <div class="input-group">
+                                        <input type="number" value="10" min="1" max="300">
+                                        <span class="chinese">秒</span>
+                                        <span class="english">sec</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="shortcut-item">
+                                    <label class="shortcut-label">
+                                        <span class="chinese">V键</span>
+                                        <span class="english">V Key</span>
+                                    </label>
+                                    <div class="input-group">
+                                        <input type="number" value="30" min="1" max="300">
+                                        <span class="chinese">秒</span>
+                                        <span class="english">sec</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="section">
+                            <h3>
+                                <span class="chinese">设置</span>
+                                <span class="english">Settings</span>
+                            </h3>
+                            <div class="setting-item">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" checked>
+                                    <span class="chinese">显示控制面板</span>
+                                    <span class="english">Show Control Panel</span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="section">
+                            <h3>
+                                <span class="chinese">速度控制</span>
+                                <span class="english">Speed Control</span>
+                            </h3>
+                            <div class="speed-buttons">
+                                <button class="speed-btn">1x</button>
+                                <button class="speed-btn active">1.5x</button>
+                                <button class="speed-btn">2x</button>
+                                <button class="speed-btn">2.5x</button>
+                                <button class="speed-btn">3x</button>
+                            </div>
+                        </div>
+                        
+                        <div class="button-group">
+                            <button class="btn btn-primary">
+                                <span class="chinese">保存</span>
+                                <span class="english">Save</span>
+                            </button>
+                            <button class="btn btn-secondary">
+                                <span class="chinese">重置</span>
+                                <span class="english">Reset</span>
+                            </button>
+                        </div>
+                        
+                        <div class="help-text">
+                            <p><strong>Z</strong>: <span class="chinese">后退30秒</span><span class="english">Rewind 30s</span></p>
+                            <p><strong>X</strong>: <span class="chinese">后退10秒</span><span class="english">Rewind 10s</span></p>
+                            <p><strong>C</strong>: <span class="chinese">快进10秒</span><span class="english">Forward 10s</span></p>
+                            <p><strong>V</strong>: <span class="chinese">快进30秒</span><span class="english">Forward 30s</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Language switching utility
+        function switchLanguage(lang) {
+            document.body.className = `lang-${lang}`;
+        }
+        
+        // Console helpers for screenshot generation
+        console.log('Use switchLanguage("cn"|"en") to switch between languages');
+        console.log('Current language:', document.body.className.includes('lang-en') ? 'English' : 'Chinese');
+    </script>
+</body>
+</html>

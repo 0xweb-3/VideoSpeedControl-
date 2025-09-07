@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VideoSpeedControl - Screenshot Template</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            overflow: hidden;
+        }
+        
+        .screenshot-container {
+            width: 1280px;
+            height: 800px;
+            position: relative;
+            margin: 0 auto;
+            background: #f8f9fa;
+            display: flex;
+        }
+        
+        /* Left Panel - Features */
+        .feature-panel {
+            width: 400px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .logo-icon {
+            width: 64px;
+            height: 64px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+            font-size: 24px;
+        }
+        
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .tagline {
+            font-size: 16px;
+            opacity: 0.9;
+            margin-bottom: 40px;
+            line-height: 1.5;
+        }
+        
+        .feature-list {
+            list-style: none;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        
+        .feature-icon {
+            width: 32px;
+            height: 32px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+            font-size: 16px;
+        }
+        
+        .keyboard-demo {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+            justify-content: center;
+        }
+        
+        .key {
+            background: rgba(255, 255, 255, 0.9);
+            color: #667eea;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 18px;
+            min-width: 50px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Right Panel - Video Demo */
+        .demo-panel {
+            flex: 1;
+            background: #1a1a1a;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .video-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 640px;
+            height: 360px;
+            background: #000;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #666;
+        }
+        
+        /* Floating Control Panel */
+        .floating-panel {
+            position: absolute;
+            top: 80px;
+            right: 80px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 16px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .panel-close {
+            background: none;
+            border: none;
+            color: #999;
+            font-size: 16px;
+            cursor: pointer;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .speed-buttons {
+            display: flex;
+            gap: 6px;
+        }
+        
+        .speed-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .speed-btn.active {
+            background: #667eea;
+            border-color: #667eea;
+        }
+        
+        /* Feedback Animation */
+        .feedback {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 24px;
+            font-size: 24px;
+            font-weight: bold;
+            backdrop-filter: blur(10px);
+            animation: feedbackPulse 2s infinite;
+        }
+        
+        @keyframes feedbackPulse {
+            0%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
+            50% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+        
+        /* Language Variations */
+        .lang-en .chinese { display: none; }
+        .lang-cn .english { display: none; }
+        
+        /* Different Screenshot Themes */
+        .theme-feature .feature-panel { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .theme-demo .demo-panel { background: linear-gradient(45deg, #1a1a1a 0%, #2d3748 100%); }
+        .theme-settings .feature-panel { background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%); }
+    </style>
+</head>
+<body class="lang-cn theme-feature">
+    <div class="screenshot-container">
+        <!-- Feature Panel -->
+        <div class="feature-panel">
+            <div class="logo">
+                <div class="logo-icon">🎬</div>
+                <div>
+                    <div class="logo-text">
+                        <span class="chinese">智能视频控制器</span>
+                        <span class="english">VideoSpeedControl</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tagline">
+                <span class="chinese">智能视频播放控制，让每次观看都更高效</span>
+                <span class="english">Smart video playback control for efficient viewing</span>
+            </div>
+            
+            <ul class="feature-list">
+                <li class="feature-item">
+                    <div class="feature-icon">⌨️</div>
+                    <span class="chinese">自定义键盘快捷键</span>
+                    <span class="english">Custom Keyboard Shortcuts</span>
+                </li>
+                <li class="feature-item">
+                    <div class="feature-icon">⚡</div>
+                    <span class="chinese">多级播放速度控制</span>
+                    <span class="english">Multi-Speed Playback Control</span>
+                </li>
+                <li class="feature-item">
+                    <div class="feature-icon">🎛️</div>
+                    <span class="chinese">智能悬浮控制面板</span>
+                    <span class="english">Smart Floating Control Panel</span>
+                </li>
+                <li class="feature-item">
+                    <div class="feature-icon">🌍</div>
+                    <span class="chinese">中英文界面支持</span>
+                    <span class="english">Chinese & English Support</span>
+                </li>
+                <li class="feature-item">
+                    <div class="feature-icon">🚀</div>
+                    <span class="chinese">兼容主流视频网站</span>
+                    <span class="english">Compatible with Popular Sites</span>
+                </li>
+            </ul>
+            
+            <div class="keyboard-demo">
+                <div class="key">Z</div>
+                <div class="key">X</div>
+                <div class="key">C</div>
+                <div class="key">V</div>
+            </div>
+        </div>
+        
+        <!-- Demo Panel -->
+        <div class="demo-panel">
+            <div class="video-container">
+                <div style="color: #666; font-size: 18px;">
+                    <span class="chinese">🎬 视频播放演示</span>
+                    <span class="english">🎬 Video Playback Demo</span>
+                </div>
+            </div>
+            
+            <!-- Floating Control Panel -->
+            <div class="floating-panel">
+                <div class="panel-header">
+                    <span class="chinese">速度控制</span>
+                    <span class="english">Speed Control</span>
+                    <button class="panel-close">×</button>
+                </div>
+                <div class="speed-buttons">
+                    <button class="speed-btn">1x</button>
+                    <button class="speed-btn active">1.5x</button>
+                    <button class="speed-btn">2x</button>
+                    <button class="speed-btn">2.5x</button>
+                    <button class="speed-btn">3x</button>
+                </div>
+            </div>
+            
+            <!-- Feedback Animation -->
+            <div class="feedback">+10s</div>
+        </div>
+    </div>
+    
+    <script>
+        // Screenshot generation helper functions
+        
+        // Switch between Chinese and English
+        function switchLanguage(lang) {
+            document.body.className = document.body.className.replace(/lang-\w+/, `lang-${lang}`);
+        }
+        
+        // Switch between themes
+        function switchTheme(theme) {
+            document.body.className = document.body.className.replace(/theme-\w+/, `theme-${theme}`);
+        }
+        
+        // Generate different screenshot variations
+        const screenshots = [
+            { name: 'main-cn', lang: 'cn', theme: 'feature' },
+            { name: 'main-en', lang: 'en', theme: 'feature' },
+            { name: 'demo-cn', lang: 'cn', theme: 'demo' },
+            { name: 'demo-en', lang: 'en', theme: 'demo' }
+        ];
+        
+        // You can call these functions from browser console to generate different variants
+        console.log('Available screenshot variants:', screenshots);
+        console.log('Use switchLanguage("cn"|"en") and switchTheme("feature"|"demo"|"settings") to change variants');
+        
+        // Auto-cycle through variants for demonstration
+        let currentIndex = 0;
+        function autoRotate() {
+            const variant = screenshots[currentIndex];
+            switchLanguage(variant.lang);
+            switchTheme(variant.theme);
+            currentIndex = (currentIndex + 1) % screenshots.length;
+        }
+        
+        // Uncomment to enable auto-rotation every 3 seconds
+        // setInterval(autoRotate, 3000);
+    </script>
+</body>
+</html>

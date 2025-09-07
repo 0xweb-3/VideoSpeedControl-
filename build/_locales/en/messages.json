@@ -1,0 +1,110 @@
+{
+  "extensionName": {
+    "message": "VideoSpeedControl",
+    "description": "Name of the extension"
+  },
+  "extensionDescription": {
+    "message": "Advanced video speed control with customizable keyboard shortcuts and precise playback management",
+    "description": "Description of the extension"
+  },
+  "speedControl": {
+    "message": "Speed Control",
+    "description": "Speed control section title"
+  },
+  "keyboardShortcuts": {
+    "message": "Keyboard Shortcuts",
+    "description": "Keyboard shortcuts section title"
+  },
+  "settings": {
+    "message": "Settings",
+    "description": "Settings page title"
+  },
+  "rewindSeconds": {
+    "message": "Rewind $seconds$ seconds",
+    "description": "Rewind action description",
+    "placeholders": {
+      "seconds": {
+        "content": "$1",
+        "example": "30"
+      }
+    }
+  },
+  "forwardSeconds": {
+    "message": "Forward $seconds$ seconds", 
+    "description": "Forward action description",
+    "placeholders": {
+      "seconds": {
+        "content": "$1",
+        "example": "30"
+      }
+    }
+  },
+  "keyZ": {
+    "message": "Z Key",
+    "description": "Z key label"
+  },
+  "keyX": {
+    "message": "X Key", 
+    "description": "X key label"
+  },
+  "keyC": {
+    "message": "C Key",
+    "description": "C key label"
+  },
+  "keyV": {
+    "message": "V Key",
+    "description": "V key label"
+  },
+  "customizeShortcuts": {
+    "message": "Customize Shortcuts",
+    "description": "Customize shortcuts button"
+  },
+  "playbackSpeed": {
+    "message": "Playback Speed",
+    "description": "Playback speed label"
+  },
+  "normalSpeed": {
+    "message": "Normal (1x)",
+    "description": "Normal speed option"
+  },
+  "save": {
+    "message": "Save",
+    "description": "Save button"
+  },
+  "cancel": {
+    "message": "Cancel", 
+    "description": "Cancel button"
+  },
+  "seconds": {
+    "message": "seconds",
+    "description": "Seconds unit"
+  },
+  "showPanel": {
+    "message": "Show Control Panel",
+    "description": "Show control panel option"
+  },
+  "hidePanel": {
+    "message": "Hide Control Panel",
+    "description": "Hide control panel option"
+  },
+  "dragToMove": {
+    "message": "Drag to move",
+    "description": "Drag instruction for floating panel"
+  },
+  "language": {
+    "message": "Language",
+    "description": "Language setting"
+  },
+  "english": {
+    "message": "English",
+    "description": "English language option"
+  },
+  "chinese": {
+    "message": "中文",
+    "description": "Chinese language option"
+  },
+  "supportDeveloper": {
+    "message": "💝 Support Developer",
+    "description": "Support developer link"
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "extensionName": {
+    "message": "视频速度控制",
+    "description": "扩展名称"
+  },
+  "extensionDescription": {
+    "message": "高级视频速度控制，支持自定义键盘快捷键和精确播放管理",
+    "description": "扩展描述"
+  },
+  "speedControl": {
+    "message": "速度控制",
+    "description": "速度控制区域标题"
+  },
+  "keyboardShortcuts": {
+    "message": "键盘快捷键",
+    "description": "键盘快捷键区域标题"
+  },
+  "settings": {
+    "message": "设置",
+    "description": "设置页面标题"
+  },
+  "rewindSeconds": {
+    "message": "后退$seconds$秒",
+    "description": "后退操作描述",
+    "placeholders": {
+      "seconds": {
+        "content": "$1",
+        "example": "30"
+      }
+    }
+  },
+  "forwardSeconds": {
+    "message": "快进$seconds$秒",
+    "description": "快进操作描述", 
+    "placeholders": {
+      "seconds": {
+        "content": "$1",
+        "example": "30"
+      }
+    }
+  },
+  "keyZ": {
+    "message": "Z键",
+    "description": "Z键标签"
+  },
+  "keyX": {
+    "message": "X键",
+    "description": "X键标签"
+  },
+  "keyC": {
+    "message": "C键",
+    "description": "C键标签"
+  },
+  "keyV": {
+    "message": "V键",
+    "description": "V键标签"
+  },
+  "customizeShortcuts": {
+    "message": "自定义快捷键",
+    "description": "自定义快捷键按钮"
+  },
+  "playbackSpeed": {
+    "message": "播放速度",
+    "description": "播放速度标签"
+  },
+  "normalSpeed": {
+    "message": "正常速度 (1x)",
+    "description": "正常速度选项"
+  },
+  "save": {
+    "message": "保存",
+    "description": "保存按钮"
+  },
+  "cancel": {
+    "message": "取消",
+    "description": "取消按钮"
+  },
+  "seconds": {
+    "message": "秒",
+    "description": "秒单位"
+  },
+  "showPanel": {
+    "message": "显示控制面板",
+    "description": "显示控制面板选项"
+  },
+  "hidePanel": {
+    "message": "隐藏控制面板",
+    "description": "隐藏控制面板选项"
+  },
+  "dragToMove": {
+    "message": "拖拽移动",
+    "description": "浮动面板拖拽说明"
+  },
+  "language": {
+    "message": "语言",
+    "description": "语言设置"
+  },
+  "english": {
+    "message": "English",
+    "description": "英文语言选项"
+  },
+  "chinese": {
+    "message": "中文",
+    "description": "中文语言选项"
+  },
+  "supportDeveloper": {
+    "message": "💝 支持开发者",
+    "description": "支持开发者链接"
+  }
+}

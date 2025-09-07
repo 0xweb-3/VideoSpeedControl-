@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>视频速度控制扩展测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background: #f0f0f0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .video-container {
+            margin: 20px 0;
+            padding: 15px;
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+        }
+        video {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            display: block;
+            margin: 10px auto;
+        }
+        .instructions {
+            background: #e7f3ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .instructions h3 {
+            margin-top: 0;
+            color: #0066cc;
+        }
+        .instructions ul {
+            margin: 10px 0;
+        }
+        .instructions li {
+            margin: 5px 0;
+        }
+        .note {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎬 视频速度控制扩展测试页面</h1>
+        
+        <div class="instructions">
+            <h3>📋 测试说明</h3>
+            <ul>
+                <li>✅ 确保已加载Video Speed Control扩展</li>
+                <li>✅ 右上角应显示浮动速度控制按钮</li>
+                <li>✅ 点击浮动按钮可打开设置界面</li>
+                <li>✅ 使用快捷键：Z(后退30s), X(后退10s), C(前进10s), V(前进30s)</li>
+                <li>✅ 在设置中调整速度，保存后应立即生效</li>
+            </ul>
+        </div>
+        
+        <div class="video-container">
+            <h3>测试视频 1 - Big Buck Bunny</h3>
+            <video controls>
+                <source src="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4" type="video/mp4">
+                <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+                您的浏览器不支持视频标签。
+            </video>
+        </div>
+        
+        <div class="video-container">
+            <h3>测试视频 2 - 本地测试视频</h3>
+            <video controls>
+                <source src="data:video/mp4;base64,AAAAHGZ0eXBpc29tAAACAGlzb21pc28ybXA0MQAAAAhmcmVlAAAAKG1kYXQhEAUgpBv/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=" type="video/mp4">
+                无法加载测试视频
+            </video>
+        </div>
+        
+        <div class="note">
+            <strong>💡 提示：</strong> 
+            <p>如果浮动按钮没有出现，请检查：</p>
+            <ul>
+                <li>扩展是否已正确安装并启用</li>
+                <li>页面是否需要刷新</li>
+                <li>浏览器控制台是否有错误信息</li>
+            </ul>
+        </div>
+        
+        <div class="instructions">
+            <h3>🧪 功能测试清单</h3>
+            <ul>
+                <li>□ 浮动按钮显示正确（显示当前速度，如"1x ⚙️"）</li>
+                <li>□ 浮动按钮可以拖拽移动</li>
+                <li>□ 点击浮动按钮打开设置弹窗（不是全屏）</li>
+                <li>□ 键盘快捷键Z/X/C/V可以控制视频进度</li>
+                <li>□ 在设置中调整倍速，点击保存后视频播放速度立即改变</li>
+                <li>□ 浮动按钮显示的速度数值与实际播放速度一致</li>
+                <li>□ 设置的语言切换功能正常</li>
+                <li>□ 自定义快捷键时间间隔功能正常</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Add some debug information
+        console.log('Test page loaded');
+        console.log('Videos found:', document.querySelectorAll('video').length);
+        
+        // Listen for video events
+        document.querySelectorAll('video').forEach((video, index) => {
+            video.addEventListener('loadedmetadata', () => {
+                console.log(`Video ${index + 1} loaded, duration:`, video.duration);
+            });
+            
+            video.addEventListener('ratechange', () => {
+                console.log(`Video ${index + 1} playback rate changed to:`, video.playbackRate);
+            });
+        });
+    </script>
+</body>
+</html>

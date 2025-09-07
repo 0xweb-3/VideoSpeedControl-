@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>支持开发者 - VideoSpeedControl</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .content-section {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        
+        .section-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #495057;
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 8px;
+        }
+        
+        .support-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .support-card {
+            text-align: center;
+            padding: 25px;
+            border: 2px solid #e9ecef;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .support-card:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+        }
+        
+        .support-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .support-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #495057;
+        }
+        
+        .support-description {
+            font-size: 14px;
+            color: #6c757d;
+            margin-bottom: 15px;
+        }
+        
+        .qr-code {
+            max-width: 200px;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+            margin: 10px 0;
+        }
+        
+        .crypto-address {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            padding: 12px;
+            font-family: 'Monaco', 'Consolas', monospace;
+            font-size: 12px;
+            word-break: break-all;
+            margin: 10px 0;
+            position: relative;
+        }
+        
+        .copy-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 12px;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: background 0.2s;
+        }
+        
+        .copy-btn:hover {
+            background: #5a67d8;
+        }
+        
+        .copy-btn.copied {
+            background: #28a745;
+        }
+        
+        .why-support {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            margin: 20px 0;
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .feature-list li {
+            padding: 8px 0;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .feature-list li:before {
+            content: "✓";
+            color: #28a745;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        .disclaimer {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 20px 0;
+            font-size: 14px;
+            color: #856404;
+        }
+        
+        .lang-switch {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 20px;
+            padding: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .lang-btn {
+            background: none;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 16px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        
+        .lang-btn.active {
+            background: #667eea;
+            color: white;
+        }
+        
+        /* Language switching */
+        .lang-en .chinese { display: none; }
+        .lang-cn .english { display: none; }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .support-options {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .header {
+                padding: 30px 15px;
+            }
+            
+            .content-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body class="lang-cn">
+    <!-- Language Switch -->
+    <div class="lang-switch">
+        <button class="lang-btn active">中文</button>
+        <button class="lang-btn">English</button>
+    </div>
+    
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>
+                <span class="chinese">💝 支持开发者</span>
+                <span class="english">💝 Support Developer</span>
+            </h1>
+            <p>
+                <span class="chinese">VideoSpeedControl 是一个免费开源项目，您的支持是我们持续改进的动力</span>
+                <span class="english">VideoSpeedControl is a free open-source project. Your support motivates us to keep improving</span>
+            </p>
+        </div>
+        
+        <!-- Why Support -->
+        <div class="content-section">
+            <h2 class="section-title">
+                <span class="chinese">🌟 为什么需要您的支持</span>
+                <span class="english">🌟 Why Your Support Matters</span>
+            </h2>
+            
+            <div class="why-support">
+                <p>
+                    <span class="chinese">
+                        VideoSpeedControl 致力于为用户提供最好的视频速度控制体验。作为一个完全免费、无广告的扩展，
+                        我们依靠用户的自愿支持来维持项目的持续开发和改进。
+                    </span>
+                    <span class="english">
+                        VideoSpeedControl is committed to providing the best video speed control experience. 
+                        As a completely free, ad-free extension, we rely on voluntary user support to maintain 
+                        continuous development and improvement.
+                    </span>
+                </p>
+            </div>
+            
+            <ul class="feature-list">
+                <li>
+                    <span class="chinese">🆓 永久免费使用，无任何付费功能</span>
+                    <span class="english">🆓 Forever free to use, no paid features</span>
+                </li>
+                <li>
+                    <span class="chinese">🚫 无广告，无数据收集</span>
+                    <span class="english">🚫 No ads, no data collection</span>
+                </li>
+                <li>
+                    <span class="chinese">🔄 持续更新，新功能开发</span>
+                    <span class="english">🔄 Continuous updates and new feature development</span>
+                </li>
+                <li>
+                    <span class="chinese">🛠️ 技术支持和问题修复</span>
+                    <span class="english">🛠️ Technical support and bug fixes</span>
+                </li>
+                <li>
+                    <span class="chinese">🌍 多语言支持和本地化</span>
+                    <span class="english">🌍 Multi-language support and localization</span>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- Support Options -->
+        <div class="content-section">
+            <h2 class="section-title">
+                <span class="chinese">💰 支持方式</span>
+                <span class="english">💰 Support Options</span>
+            </h2>
+            
+            <div class="support-options">
+                <!-- WeChat Pay -->
+                <div class="support-card" data-toggle="wechat">
+                    <div class="support-icon">💚</div>
+                    <div class="support-title">
+                        <span class="chinese">微信支付</span>
+                        <span class="english">WeChat Pay</span>
+                    </div>
+                    <div class="support-description">
+                        <span class="chinese">扫描二维码，使用微信支付支持我们</span>
+                        <span class="english">Scan QR code to support us via WeChat Pay</span>
+                    </div>
+                    <img id="wechat-qr" class="qr-code" src="" alt="微信收款码" style="display: block;">
+                    <div class="chinese" style="font-size: 12px; color: #666; margin-top: 10px; display: block;" id="wechat-note">
+                        点击可以隐藏二维码
+                    </div>
+                    <div class="english" style="font-size: 12px; color: #666; margin-top: 10px; display: block;" id="wechat-note-en">
+                        Click to hide QR code
+                    </div>
+                </div>
+                
+                <!-- Ethereum -->
+                <div class="support-card">
+                    <div class="support-icon">⚡</div>
+                    <div class="support-title">
+                        <span class="chinese">以太坊 (ETH)</span>
+                        <span class="english">Ethereum (ETH)</span>
+                    </div>
+                    <div class="support-description">
+                        <span class="chinese">使用加密货币支持我们</span>
+                        <span class="english">Support us with cryptocurrency</span>
+                    </div>
+                    <div class="crypto-address" id="eth-address">
+                        0xc3b991ecd6079acc8493b79ac7691c64ce09eac2
+                    </div>
+                    <button class="copy-btn" data-target="eth-address">
+                        <span class="chinese">复制地址</span>
+                        <span class="english">Copy Address</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        
+        <!-- Disclaimer -->
+        <div class="disclaimer">
+            <strong>
+                <span class="chinese">📋 声明：</span>
+                <span class="english">📋 Disclaimer:</span>
+            </strong>
+            <span class="chinese">
+                所有捐赠完全自愿，不影响扩展的使用。我们承诺VideoSpeedControl将永远保持免费和开源。
+                捐赠将用于项目的持续开发、服务器维护和新功能研发。
+            </span>
+            <span class="english">
+                All donations are completely voluntary and do not affect the use of the extension. 
+                We promise that VideoSpeedControl will always remain free and open source. 
+                Donations will be used for continuous project development, server maintenance, and new feature research.
+            </span>
+        </div>
+        
+        <!-- Thank You -->
+        <div class="content-section" style="text-align: center;">
+            <h2 style="color: #667eea; margin-bottom: 15px;">
+                <span class="chinese">🙏 感谢您的支持！</span>
+                <span class="english">🙏 Thank You for Your Support!</span>
+            </h2>
+            <p style="color: #6c757d;">
+                <span class="chinese">每一份支持都是我们前进的动力，让我们一起打造更好的视频体验！</span>
+                <span class="english">Every support is our motivation to move forward. Let's create a better video experience together!</span>
+            </p>
+        </div>
+    </div>
+    
+    <script src="assets/scripts/support.js"></script>
+</body>
+</html>

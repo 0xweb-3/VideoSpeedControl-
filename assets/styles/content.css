@@ -1,0 +1,197 @@
+/* Video Speed Controller Content Styles */
+
+/* Floating control panel styles - injected via JavaScript for better isolation */
+/* This CSS file serves as backup and additional global styles */
+
+/* Reset for floating panel to avoid conflicts with host page */
+#video-speed-controller-panel {
+  all: initial;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif !important;
+}
+
+/* Ensure our panel is always on top */
+#video-speed-controller-panel,
+#video-speed-controller-panel * {
+  position: fixed !important;
+  z-index: 2147483647 !important; /* Maximum z-index */
+  box-sizing: border-box !important;
+}
+
+/* Feedback notification styles */
+.vsc-feedback {
+  all: initial;
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  background: rgba(0, 0, 0, 0.85) !important;
+  color: white !important;
+  padding: 12px 24px !important;
+  border-radius: 24px !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  z-index: 2147483647 !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+  transition: opacity 0.3s ease !important;
+  backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  text-align: center !important;
+  min-width: 80px !important;
+}
+
+.vsc-feedback.show {
+  opacity: 1 !important;
+}
+
+/* Animation for feedback */
+@keyframes vsc-feedback-pulse {
+  0% { transform: translate(-50%, -50%) scale(0.9); opacity: 0; }
+  50% { transform: translate(-50%, -50%) scale(1.05); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+}
+
+.vsc-feedback.show {
+  animation: vsc-feedback-pulse 0.3s ease !important;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  #video-speed-controller-panel {
+    border: 2px solid white !important;
+    background: rgba(0, 0, 0, 0.95) !important;
+  }
+  
+  .vsc-speed {
+    border: 2px solid rgba(255, 255, 255, 0.5) !important;
+  }
+  
+  .vsc-speed.active {
+    border: 2px solid white !important;
+    background: #0066cc !important;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  #video-speed-controller-panel,
+  .vsc-feedback,
+  .vsc-speed {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Dark theme support */
+@media (prefers-color-scheme: dark) {
+  #video-speed-controller-panel {
+    background: rgba(20, 20, 20, 0.9) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+  }
+  
+  .vsc-header {
+    border-bottom-color: rgba(255, 255, 255, 0.3) !important;
+  }
+  
+  .vsc-speed {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+    color: white !important;
+  }
+  
+  .vsc-speed:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+  }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  #video-speed-controller-panel {
+    right: 10px !important;
+    top: 10px !important;
+    min-width: 180px !important;
+    font-size: 11px !important;
+    padding: 10px !important;
+  }
+  
+  .vsc-speeds {
+    gap: 4px !important;
+  }
+  
+  .vsc-speed {
+    padding: 8px 6px !important;
+    font-size: 10px !important;
+    min-width: 30px !important;
+  }
+  
+  .vsc-feedback {
+    font-size: 14px !important;
+    padding: 8px 16px !important;
+  }
+}
+
+/* Print styles - hide our controls */
+@media print {
+  #video-speed-controller-panel,
+  .vsc-feedback {
+    display: none !important;
+  }
+}
+
+/* Focus management for accessibility */
+#video-speed-controller-panel:focus-within {
+  outline: 2px solid #0066cc !important;
+  outline-offset: 2px !important;
+}
+
+/* Ensure buttons are focusable */
+.vsc-speed:focus {
+  outline: 2px solid #0066cc !important;
+  outline-offset: 1px !important;
+}
+
+.vsc-close:focus {
+  outline: 2px solid #0066cc !important;
+  outline-offset: 1px !important;
+}
+
+/* Prevent text selection in panel */
+#video-speed-controller-panel {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+}
+
+/* Ensure panel doesn't interfere with video controls */
+video:hover ~ #video-speed-controller-panel {
+  opacity: 0.7 !important;
+}
+
+/* RTL language support */
+[dir="rtl"] #video-speed-controller-panel {
+  right: auto !important;
+  left: 20px !important;
+}
+
+/* Compact mode for small screens */
+@media (max-height: 600px) {
+  #video-speed-controller-panel {
+    top: 5px !important;
+    padding: 6px !important;
+  }
+  
+  .vsc-header {
+    margin-bottom: 4px !important;
+  }
+  
+  .vsc-title {
+    font-size: 10px !important;
+  }
+  
+  .vsc-speed {
+    padding: 3px 6px !important;
+    font-size: 10px !important;
+  }
+}

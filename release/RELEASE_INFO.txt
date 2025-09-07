@@ -1,0 +1,29 @@
+VideoSpeedControl Chrome Extension Release
+==========================================
+
+Release Information:
+- Version: 1.0.0
+- Build Date: 2025年 9月 7日 星期日 10时40分20秒 CST
+- Build ID: 20250907_104019
+- Release Name: VideoSpeedControl_v1.0.0_20250907_104019
+
+Files in this release:
+- VideoSpeedControl_v1.0.0_20250907_104019.zip (Production package for Chrome Web Store)
+- VideoSpeedControl_v1.0.0_20250907_104019_dev.zip (Development package with docs and tests)
+
+Installation Instructions:
+1. Unzip the package
+2. Open Chrome and go to chrome://extensions/
+3. Enable "Developer mode"
+4. Click "Load unpacked" and select the unzipped folder
+
+Chrome Web Store Submission:
+- Use the production package (VideoSpeedControl_v1.0.0_20250907_104019.zip)
+- Upload to Chrome Developer Dashboard
+- Fill in store listing information
+- Submit for review
+
+Support:
+- GitHub: https://github.com/yourusername/video-speed-control
+- Issues: https://github.com/yourusername/video-speed-control/issues
+
