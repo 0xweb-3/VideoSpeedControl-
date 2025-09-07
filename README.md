@@ -4,7 +4,7 @@
 一款功能强大的Chrome浏览器扩展，专注于视频播放速度控制体验。支持自定义键盘快捷键、多级播放速度调节，以及智能悬浮控制面板，让您的视频观看更加高效便捷。
 
 [![Chrome Web Store](https://img.shields.io/badge/Chrome-Extension-green?style=for-the-badge&logo=google-chrome)](https://chrome.google.com/webstore)
-[![Version](https://img.shields.io/badge/version-1.0.0-blue?style=for-the-badge)](https://github.com/yourusername/video-speed-control)
+[![Version](https://img.shields.io/badge/version-1.1.0-blue?style=for-the-badge)](https://github.com/0xweb-3/VideoSpeedControl-)
 [![License](https://img.shields.io/badge/license-MIT-orange?style=for-the-badge)](LICENSE)
 
 ## ✨ 核心特性
